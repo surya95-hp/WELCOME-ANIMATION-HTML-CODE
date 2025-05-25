@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation College Admission Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(270deg, #ff416c, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            animation: fadeIn 1.5s ease-in-out;
+            max-width: 450px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        fieldset {
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        legend {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        textarea {
+            height: 80px;
+        }
+        .btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+            width: 100%;
+        }
+        .btn:hover {
+            background: white;
+            color: #2575fc;
+            transform: scale(1.1);
+        }
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .particle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+    <div class="container">
+        <h1>"Unleash Your Creativity, Shape the Future!"</h1>
+        <p>Fill in your details and step into the world of animation.</p>
+        <form>
+            <fieldset>
+                <legend>Personal Details</legend>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Preferences</legend>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="" disabled selected>Select your gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Why do you love Animation?</label>
+                    <textarea id="message" placeholder="Share your passion here..."></textarea>
+                </div>
+            </fieldset>
+            <button class="btn" onclick="window.location.href='welcome_animation.html'">Let's Animate Your Future!</button>
+        </form>
+    </div>
+    <script>
+        for (let i = 0; i < 50; i++) {
+            let particle = document.createElement("div");
+            particle.classList.add("particle");
+            document.querySelector(".particles").appendChild(particle);
+            particle.style.left = Math.random() * 100 + "vw";
+            particle.style.top = Math.random() * 100 + "vh";
+            anime({
+                targets: particle,
+                translateY: [0, -50],
+                opacity: [0.5, 1, 0.5],
+                easing: "easeInOutSine",
+                duration: Math.random() * 3000 + 3000,
+                loop: true,
+                delay: Math.random() * 5000
+            });
+        }
+    </script>
+</body>
+</html>
+

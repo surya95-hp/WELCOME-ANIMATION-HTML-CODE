@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page 4 - NextGen Animations</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .title-tile {
+      font-size: 2.5em;
+      font-weight: bold;
+      background: linear-gradient(to right, #ff9966, #ff5e62);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideIn 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 1.1em;
+      color: #ddd;
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    form {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      gap: 15px;
+    }
+
+    input {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      padding: 10px;
+      background: #ff5e62;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ff9966;
+    }
+
+    .thank-you {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #fffa;
+      display: none;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  >
+
+  <div class="title-tile">✨ NextGen Animations ✨</div>
+  <div class="caption">"Let your creativity speak in motion..."</div>
+
+  <form id="animationForm">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Email Address" required>
+    <button type="submit">START YOUR JOURNEY BY LOGIN</button>
+  </form>
+
+  <div class="thank-you" id="thankYouMsg">
+    💖 Thank you for your interest! Your animation journey begins now! 🚀
+    <br>
+    <button onclick="window.location.href='login_num.html'">Go to Login Page</button>
+  </div>
+
+  <script>
+    const form = document.getElementById("animationForm");
+    const thankYouMsg = document.getElementById("thankYouMsg");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      form.style.display = "none";
+      thankYouMsg.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
+

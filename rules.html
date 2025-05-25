@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animation University Online Rules</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .title-tile {
+      font-size: 2.5em;
+      font-weight: bold;
+      background: linear-gradient(to right, #ff9966, #ff5e62);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideIn 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 1.1em;
+      color: #ddd;
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .rules {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .rule {
+      opacity: 0;
+      animation: ruleFadeIn 1.5s ease-out forwards;
+      margin-bottom: 15px;
+      font-size: 1.1em;
+      color: #ddd;
+    }
+
+    .rule:nth-child(1) {
+      animation-delay: 1s;
+    }
+    .rule:nth-child(2) {
+      animation-delay: 2s;
+    }
+    .rule:nth-child(3) {
+      animation-delay: 3s;
+    }
+    .rule:nth-child(4) {
+      animation-delay: 4s;
+    }
+    .rule:nth-child(5) {
+      animation-delay: 5s;
+    }
+
+    @keyframes ruleFadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .submit-btn {
+      padding: 12px 20px;
+      background: #ff5e62;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background: #ff9966;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title-tile">🎬 Animation University Online Rules 🎬</div>
+  <div class="caption">"These rules are your guide to success in the animation world..."</div>
+
+  <div class="rules">
+    <div class="rule">1. Always respect the intellectual property of others.</div>
+    <div class="rule">2. Submit your work by the deadline; late submissions will not be accepted.</div>
+    <div class="rule">3. Follow the guidelines for each assignment carefully to avoid penalties.</div>
+    <div class="rule">4. Be respectful and professional in all your communications.</div>
+    <div class="rule">5. Participate actively in discussions, critiques, and workshops.</div>
+    <button class="submit-btn" onclick="window.location.href='course1.html'">Acknowledge Rules & Start Your Journey</button>
+  </div>
+
+  <script>
+    // Optional: To trigger a slight animation for the button on load
+    const submitButton = document.querySelector(".submit-btn");
+    submitButton.addEventListener("mouseover", function() {
+      submitButton.style.transform = "scale(1.05)";
+    });
+    submitButton.addEventListener("mouseout", function() {
+      submitButton.style.transform = "scale(1)";
+    });
+  </script>
+
+</body>
+</html>
+

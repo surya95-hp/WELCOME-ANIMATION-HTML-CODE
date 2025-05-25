@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intermediate Animation - Layer 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background bubbles */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 20s linear infinite;
+    }
+    .bubble1 { width: 100px; height: 100px; background: #ffffff; top: 10%; left: 5%; animation-delay: 0s; }
+    .bubble2 { width: 150px; height: 150px; background: #d0f0ff; top: 60%; left: 70%; animation-delay: 4s; }
+    .bubble3 { width: 80px; height: 80px; background: #a0d8ef; top: 30%; left: 85%; animation-delay: 8s; }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-50px) scale(1.1); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .quote {
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .loader {
+      margin: 2rem auto;
+      border: 10px solid #eee;
+      border-top: 10px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .fact {
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+      animation-delay: var(--delay);
+      margin: 1rem auto;
+      max-width: 500px;
+      background: #fff8e1;
+      padding: 1rem;
+      border-left: 5px solid orange;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    #ball {
+      width: 50px;
+      height: 50px;
+      background: crimson;
+      border-radius: 50%;
+      margin: 1rem auto;
+      transition: transform 0.5s ease;
+    }
+
+    .animate {
+      animation: bounce 1s ease forwards;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-100px); }
+      100% { transform: translateY(0); }
+    }
+
+    .btn {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .wave-text {
+      font-size: 2rem;
+      text-align: center;
+      animation: wave 2s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(15px); }
+    }
+
+    .slide-in {
+      opacity: 0;
+      transform: translateX(-100%);
+      animation: slideIn 1s forwards ease-in-out;
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .next-button {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .next-button a {
+      text-decoration: none;
+      color: white;
+      background: #2ecc71;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1.2rem;
+    }
+
+    .learning-box {
+      background: #e3f2fd;
+      padding: 1rem;
+      margin: 1rem auto;
+      border-left: 6px solid #2196f3;
+      border-radius: 10px;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+  <div class="bubble bubble3"></div>
+
+  <h1>🌟 Intermediate Animation Concepts</h1>
+  <p class="quote">“Animation is not the art of drawings that move but the art of movements that are drawn.”</p>
+
+  <div class="card">
+    <h3>Hover over this card</h3>
+    <p>It expands and rotates slightly using transitions and transforms.</p>
+  </div>
+
+  <div class="loader"></div>
+  <p style="text-align:center">CSS Loader with infinite animation</p>
+
+  <div id="ball"></div>
+  <button class="btn" onclick="triggerAnimation()">Bounce the Ball</button>
+
+  <div class="fact" style="--delay: 0.5s">💡 Did you know? CSS animations can loop infinitely or just once.</div>
+  <div class="fact" style="--delay: 1s">💡 You can chain multiple animations by using JavaScript events.</div>
+  <div class="fact" style="--delay: 1.5s">💡 Timing functions help you control the feel of an animation (ease, linear, etc.).</div>
+
+  <h2 class="wave-text">🌊 Wave Animation Text</h2>
+  <div class="slide-in card">
+    <h3>Slide-in Effect</h3>
+    <p>This card slides in from the left using transform and opacity transitions.</p>
+  </div>
+
+  <div class="learning-box">
+    <h3>🎓 Student Learning Goals</h3>
+    <ul>
+      <li>Understand keyframe animations and how to trigger them.</li>
+      <li>Learn transition timing and easing functions.</li>
+      <li>Explore transform properties like scale, rotate, and translate.</li>
+      <li>Interact with DOM elements to create real-time animations.</li>
+      <li>Use CSS loaders and animated backgrounds in UI/UX design.</li>
+    </ul>
+  </div>
+
+  <div class="learning-box">
+    <h3>🧠 Concepts Covered</h3>
+    <ul>
+      <li><strong>Hover Animations:</strong> Trigger animations on mouse hover.</li>
+      <li><strong>Button-triggered Animation:</strong> Use JS to add animation classes.</li>
+      <li><strong>Chained Animations:</strong> Delay animations with CSS variables.</li>
+      <li><strong>Slide-in Effect:</strong> Animate cards sliding into view.</li>
+      <li><strong>Text Animation:</strong> Wave and bounce effects for text.</li>
+    </ul>
+  </div>
+
+  <div class="next-button">
+     <a href="course3.html" class="btn">Let's the REAL JOURNEY begin's</a>
+  </div>
+
+  <script>
+    function triggerAnimation() {
+      const ball = document.getElementById("ball");
+      ball.classList.remove("animate");
+      void ball.offsetWidth; // restart animation
+      ball.classList.add("animate");
+    }
+  </script>
+</body>
+</html>
+

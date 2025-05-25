@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OTP Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #ff416c, #ff4b2b, #2575fc, #6a11cb);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      position: relative;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      z-index: 1;
+    }
+
+    input {
+      padding: 10px;
+      width: 100%;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #ffffffaa;
+      color: #2575fc;
+      font-weight: bold;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: white;
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      background: white;
+      opacity: 0.2;
+      border-radius: 50%;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="particles"></div>
+
+<div class="box">
+  <h3>Send OTP</h3>
+  <input type="text" id="phone" placeholder="Enter 10-digit phone" />
+  <button onclick="sendOTP()">Send OTP</button>
+  
+  <div id="otpSection" style="display:none;">
+    <input type="text" id="otpInput" placeholder="Enter OTP" />
+    <button onclick="verifyOTP()">Verify OTP</button>
+  </div>
+
+  <div id="message"></div>
+</div>
+
+<script>
+  // Floating particles
+  for (let i = 0; i < 40; i++) {
+    let particle = document.createElement("div");
+    particle.classList.add("particle");
+    const size = Math.random() * 6 + 4 + "px";
+    particle.style.width = size;
+    particle.style.height = size;
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    document.querySelector(".particles").appendChild(particle);
+  }
+
+  // OTP simulation
+  let generatedOTP = "";
+
+  function sendOTP() {
+    const phone = document.getElementById("phone").value.trim();
+    if (!/^\d{10}$/.test(phone)) {
+      alert("Enter a valid 10-digit number.");
+      return;
+    }
+
+    generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+    document.getElementById("message").textContent = "OTP Sent: " + generatedOTP + " (demo only)";
+    document.getElementById("otpSection").style.display = "block";
+  }
+
+  function verifyOTP() {
+    const entered = document.getElementById("otpInput").value.trim();
+    if (entered === generatedOTP) {
+      document.getElementById("message").textContent = "✅ OTP Verified!";
+      setTimeout(function() {
+        // Redirect to rules.html after OTP verification
+        window.location.href = "rules.html"; // Redirect to the next page
+      }, 1000); // Add a slight delay before redirecting (optional)
+    } else {
+      document.getElementById("message").textContent = "❌ Incorrect OTP.";
+    }
+  }
+</script>
+
+</body>
+</html>

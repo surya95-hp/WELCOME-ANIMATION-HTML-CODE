@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎓 Your Animation Journey</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #1f4037, #99f2c8);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2rem;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      animation: fadeDown 1s ease-in-out;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #f9f9f9;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: slideIn 1.5s ease forwards;
+    }
+
+    label {
+      display: block;
+      margin-top: 1.2rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    button {
+      display: block;
+      margin: 2rem auto 0;
+      background-color: #00c9a7;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      padding: 0.8rem 2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+      background-color: #1abc9c;
+      transform: scale(1.05);
+    }
+
+    .journey-box {
+      margin-top: 3rem;
+      background: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      animation: bounceIn 2s ease;
+    }
+
+    .journey-box h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .journey-box p {
+      font-size: 1.1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateX(-100px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      animation: float 20s linear infinite;
+      z-index: -1;
+    }
+
+    .bubble1 { width: 120px; height: 120px; top: 10%; left: 5%; animation-delay: 0s; }
+    .bubble2 { width: 80px; height: 80px; top: 70%; left: 70%; animation-delay: 4s; }
+    .bubble3 { width: 100px; height: 100px; top: 30%; left: 85%; animation-delay: 8s; }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-40px) scale(1.05); }
+      100% { transform: translateY(0) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+  <div class="bubble bubble3"></div>
+
+  <h1>📘 Final Reflection</h1>
+  <p class="quote">“Every frame you draw adds motion to your mission.”</p>
+
+  <form>
+    <label for="gained">✅ What did you gain from this animation course?</label>
+    <textarea id="gained" rows="4" placeholder="Share your learning experience..."></textarea>
+
+    <label for="limitations">⚠️ What do you think are the limitations of this course?</label>
+    <textarea id="limitations" rows="4" placeholder="Share your feedback and suggestions..."></textarea>
+
+    <label for="creative">🎯 What would you like to animate next?</label>
+    <input type="text" id="creative" placeholder="e.g., Game intro screen, animated login form...">
+
+    <button type="submit">Submit Feedback</button>
+  </form>
+
+  <div class="journey-box">
+    <h2>🚀 Your Journey in Animation</h2>
+    <p>From basic transitions to animated creativity, you’ve taken your first leap into the world of motion design. Keep experimenting, learning, and animating. Your screen is your canvas. 🎨✨</p>
+  </div>
+</body>
+</html>

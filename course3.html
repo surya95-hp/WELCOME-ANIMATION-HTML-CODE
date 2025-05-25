@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Animation Techniques - Course 3</title>
+    <style>
+        /* Basic styling for the page */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: auto;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            text-align: center;
+        }
+
+        h2 {
+            color: #34495e;
+        }
+
+        .example {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #f5f6fa;
+            border-radius: 8px;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .study-content {
+            background-color: #f9fafb;
+            border-left: 5px solid #2c3e50;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        /* Button Styling */
+        .next-button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            margin: 30px auto;
+            display: block;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .next-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .next-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            overflow: auto;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Effects: Color changing and particles -->
+    <canvas class="background-effects" id="background-effects"></canvas>
+
+    <div class="content-wrapper">
+        <div class="content">
+            <canvas class="content-canvas" id="bubbleCanvas1"></canvas>
+            <h1>Advanced Animation Techniques</h1>
+            <h2>1. Physics-Based Animation</h2>
+            <p>In this section, we will learn how to simulate real-world physics like gravity, friction, and collisions.</p>
+            <div class="example">
+                <canvas id="gravityCanvas" width="400" height="400"></canvas>
+            </div>
+            <p><strong>Study content:</strong> Look into basic physics concepts like gravity, velocity, and collision detection. Understanding how these principles apply to animation can help you create more realistic effects.</p>
+        </div>
+
+        <div class="content">
+            <canvas class="content-canvas" id="bubbleCanvas2"></canvas>
+            <h2>2. 3D Transformations</h2>
+            <p>This section will guide you in creating and manipulating objects in a 3D space.</p>
+            <div class="example">
+                <p>Study content: Learn about rotation, scaling, and translating objects in a 3D space. You can also explore how to use JavaScript libraries like Three.js for more advanced 3D animations.</p>
+                <p>This is a placeholder for a 3D animation, add your JavaScript code here for creating 3D transformations.</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <canvas class="content-canvas" id="bubbleCanvas3"></canvas>
+            <h2>3. Advanced Timing and Easing Functions</h2>
+            <p>Now, we will focus on using easing functions for non-linear animation effects.</p>
+            <div class="example">
+                <canvas id="easingCanvas" width="400" height="400"></canvas>
+            </div>
+            <p><strong>Study content:</strong> Learn how easing functions (ease-in, ease-out) control the motion of objects during animation.</p>
+        </div>
+
+        <div class="content">
+            <canvas class="content-canvas" id="bubbleCanvas4"></canvas>
+            <h2>4. Interactive Animations</h2>
+            <p>Interactive animations respond to user input, such as mouse movement or clicks.</p>
+            <div class="example">
+                <p><strong>Study content:</strong> Explore how user interactions can trigger animations, like hover effects, clicks, and keyboard input.</p>
+                <button id="animateBtn">Click Me to Animate</button>
+                <div id="interactiveCanvas" style="width: 400px; height: 400px; border: 1px solid #ddd; background-color: #f5f5f5; margin: 20px auto; border-radius: 5px;"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <canvas class="content-canvas" id="bubbleCanvas5"></canvas>
+            <h2>5. Complex Animation Sequences</h2>
+            <p>Learn how to sequence multiple animations that work in harmony.</p>
+            <div class="example">
+                <canvas id="sequenceCanvas" width="400" height="400"></canvas>
+            </div>
+            <p><strong>Study content:</strong> Understand how to coordinate different animations to run simultaneously or in sequence.</p>
+        </div>
+
+        <div class="content">
+            <canvas class="content-canvas" id="bubbleCanvas6"></canvas>
+            <h2>6. Performance Optimization</h2>
+            <p>In this final section, you will learn how to optimize animations for better performance.</p>
+            <p><strong>Study content:</strong> Understand the importance of performance in animations. Learn about techniques like `requestAnimationFrame()` for smoother animations.</p>
+        </div>
+
+        <div class="study-content">
+            <h2>Resources to Study</h2>
+            <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">MDN Canvas API</a></li>
+                <li><a href="https://easings.net/">Easing Functions</a></li>
+                <li><a href="https://threejs.org/">Three.js for 3D Animations</a></li>
+                <li><a href="https://www.smashingmagazine.com/2019/07/advanced-css-animations-web-performance/">Optimizing Web Animation Performance</a></li>
+            </ul>
+        </div>
+
+        <button class="next-button" onclick="window.location.href = 'nextpage.html';">Destination of Animation Arriving Soon</button>
+    </div>
+
+    <script>
+        // Initialize background canvas
+        const backgroundCanvas = document.getElementById("background-effects");
+        backgroundCanvas.width = window.innerWidth;
+        backgroundCanvas.height = window.innerHeight;
+        const backgroundCtx = backgroundCanvas.getContext("2d");
+
+        // Smooth background gradient animation
+        let gradientTime = 0;
+        const colors = [
+            { r: 30, g: 60, b: 120 },
+            { r: 60, g: 120, b: 200 },
+            { r: 120, g: 30, b: 180 },
+            { r: 200, g: 60, b: 120 }
+        ];
+
+        function interpolateColor(color1, color2, factor) {
+            const result = {
+                r: Math.round(color1.r + (color2.r - color1.r) * factor),
+                g: Math.round(color1.g + (color2.g - color1.g) * factor),
+                b: Math.round(color1.b + (color2.b - color1.b) * factor)
+            };
+            return `rgb(${result.r}, ${result.g}, ${result.b})`;
+        }
+
+        function animateBackground() {
+            gradientTime += 0.005;
+            const index = Math.floor(gradientTime % colors.length);
+            const nextIndex = (index + 1) % colors.length;
+            const factor = gradientTime % 1;
+
+            const color = interpolateColor(colors[index], colors[nextIndex], factor);
+            document.body.style.background = `linear-gradient(45deg, ${color}, ${interpolateColor(colors[nextIndex], colors[index], factor)})`;
+
+            requestAnimationFrame(animateBackground);
+        }
+
+        animateBackground();
+
+        // Enhanced particle system
+        let particles = [];
+
+        function Particle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 5 + 2;
+            this.speedX = Math.random() * 2 - 1;
+            this.speedY = Math.random() * 2 - 1;
+            this.opacity = 1;
+            this.color = `rgba(255, 255, 255, ${this.opacity})`;
+            this.life = 100;
+        }
+
+        Particle.prototype.update = function() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.life -= 0.5;
+            this.opacity = this.life / 100;
+            this.color = `rgba(255, 255, 255, ${this.opacity})`;
+            this.size = Math.max(0.5, this.size * 0.98);
+        };
+
+        Particle.prototype.draw = function() {
+            backgroundCtx.fillStyle = this.color;
+            backgroundCtx.beginPath();
+            backgroundCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            backgroundCtx.fill();
+        };
+
+        function animateParticles() {
+            backgroundCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+            particles = particles.filter(p => p.life > 0);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        function createParticle(e) {
+            for (let i = 0; i < 3; i++) {
+                particles.push(new Particle(e.clientX, e.clientY));
+            }
+        }
+
+        backgroundCanvas.addEventListener("mousemove", createParticle);
+        animateParticles();
+
+        // Bubble effects for content sections
+        class Bubble {
+            constructor(canvas, color) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext("2d");
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 10 + 5;
+                this.speedY = -(Math.random() * 1 + 0.5);
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.color = color;
+                this.phase = Math.random() * Math.PI * 2;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.phase + this.y * 0.01) * 0.5;
+                this.opacity -= 0.002;
+                this.phase += 0.05;
+                if (this.y < -this.size || this.opacity <= 0) {
+                    this.y = this.canvas.height + this.size;
+                    this.x = Math.random() * this.canvas.width;
+                    this.opacity = Math.random() * 0.5 + 0.3;
+                    this.speedY = -(Math.random() * 1 + 0.5);
+                }
+            }
+
+            draw() {
+                this.ctx.beginPath();
+                this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                this.ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                this.ctx.shadowColor = `rgba(${this.color}, 0.5)`;
+                this.ctx.shadowBlur = 10;
+                this.ctx.fill();
+            }
+        }
+
+        function createBubbleSystem(canvas, bubbleColor) {
+            const bubbles = [];
+            const ctx = canvas.getContext("2d");
+
+            for (let i = 0; i < 20; i++) {
+                bubbles.push(new Bubble(canvas, bubbleColor));
+            }
+
+            function animateBubbles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                bubbles.forEach(bubble => {
+                    bubble.update();
+                    bubble.draw();
+                });
+                requestAnimationFrame(animateBubbles);
+            }
+
+            animateBubbles();
+        }
+
+        // Initialize bubble systems for each content section
+        const bubbleCanvases = [
+            { id: "bubbleCanvas1", color: "100, 149, 237" }, // Physics-Based Animation (Cornflower Blue)
+            { id: "bubbleCanvas2", color: "147, 112, 219" }, // 3D Transformations (Medium Purple)
+            { id: "bubbleCanvas3", color: "60, 179, 113" },  // Easing Functions (Medium Sea Green)
+            { id: "bubbleCanvas4", color: "255, 105, 180" }, // Interactive Animations (Hot Pink)
+            { id: "bubbleCanvas5", color: "255, 165, 0" },   // Complex Sequences (Orange)
+            { id: "bubbleCanvas6", color: "106, 90, 205" }   // Performance Optimization (Slate Blue)
+        ];
+
+        bubbleCanvases.forEach(({ id, color }) => {
+            const canvas = document.getElementById(id);
+            if (canvas) {
+                canvas.width = canvas.parentElement.offsetWidth;
+                canvas.height = canvas.parentElement.offsetHeight;
+                createBubbleSystem(canvas, color);
+            }
+        });
+
+        // Scroll-based content animation
+        const contents = document.querySelectorAll(".content");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.2 });
+
+        contents.forEach(content => observer.observe(content));
+
+        // Physics-based animation: Bouncing ball with gravity
+        const gravityCanvas = document.getElementById("gravityCanvas");
+        const ctx = gravityCanvas.getContext("2d");
+
+        let ball = {
+            x: 200,
+            y: 50,
+            radius: 20,
+            vx: 0,
+            vy: 0,
+            gravity: 0.5,
+            friction: 0.98
+        };
+
+        function drawBall() {
+            ctx.clearRect(0, 0, gravityCanvas.width, gravityCanvas.height);
+            ball.vy += ball.gravity;
+            ball.vy *= ball.friction;
+            ball.y += ball.vy;
+
+            if (ball.y + ball.radius > gravityCanvas.height) {
+                ball.y = gravityCanvas.height - ball.radius;
+                ball.vy = -ball.vy * 0.8;
+            }
+
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "#3498db";
+            ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
+            ctx.shadowBlur = 10;
+            ctx.fill();
+            ctx.closePath();
+
+            requestAnimationFrame(drawBall);
+        }
+
+        drawBall();
+
+        // Interactive Animation: Button animation
+        const animateBtn = document.getElementById("animateBtn");
+        const interactiveCanvas = document.getElementById("interactiveCanvas");
+
+        animateBtn.style.transition = "transform 0.2s ease, background-color 0.3s ease";
+        animateBtn.addEventListener("mouseover", () => {
+            animateBtn.style.transform = "scale(1.05)";
+        });
+        animateBtn.addEventListener("mouseout", () => {
+            animateBtn.style.transform = "scale(1)";
+        });
+
+        animateBtn.addEventListener("click", () => {
+            interactiveCanvas.style.transition = "background-color 0.5s ease";
+            interactiveCanvas.style.backgroundColor = "#3498db";
+            interactiveCanvas.innerHTML = "<p style='color: white; text-align: center; padding-top: 180px;'>Animating...</p>";
+            setTimeout(() => {
+                interactiveCanvas.style.backgroundColor = "#f5f5f5";
+                interactiveCanvas.innerHTML = "";
+            }, 1000);
+        });
+
+        // Easing Animation Example
+        const easingCanvas = document.getElementById("easingCanvas");
+        const easingCtx = easingCanvas.getContext("2d");
+
+        let easingBall = {
+            x: 50,
+            y: 200,
+            radius: 20,
+            targetX: 350,
+            startX: 50,
+            time: 0,
+            duration: 60
+        };
+
+        function easeInOutQuad(t) {
+            return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        }
+
+        function drawEasingBall() {
+            easingCtx.clearRect(0, 0, easingCanvas.width, easingCanvas.height);
+
+            if (easingBall.time < easingBall.duration) {
+                const t = easingBall.time / easingBall.duration;
+                easingBall.x = easingBall.startX + (easingBall.targetX - easingBall.startX) * easeInOutQuad(t);
+                easingBall.time++;
+            } else {
+                easingBall.time = 0;
+                easingBall.startX = easingBall.x;
+                easingBall.targetX = easingBall.targetX === 350 ? 50 : 350;
+            }
+
+            easingCtx.beginPath();
+            easingCtx.arc(easingBall.x, easingBall.y, easingBall.radius, 0, Math.PI * 2);
+            easingCtx.fillStyle = "#e74c3c";
+            easingCtx.shadowColor = "rgba(0, 0, 0, 0.3)";
+            easingCtx.shadowBlur = 10;
+            easingCtx.fill();
+            easingCtx.closePath();
+
+            requestAnimationFrame(drawEasingBall);
+        }
+
+        drawEasingBall();
+
+        // Handle window resize
+        window.addEventListener("resize", () => {
+            backgroundCanvas.width = window.innerWidth;
+            backgroundCanvas.height = window.innerHeight;
+            bubbleCanvases.forEach(({ id }) => {
+                const canvas = document.getElementById(id);
+                if (canvas) {
+                    canvas.width = canvas.parentElement.offsetWidth;
+                    canvas.height = canvas.parentElement.offsetHeight;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
